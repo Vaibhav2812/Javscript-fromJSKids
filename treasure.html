@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1	id="heading">Find	the	buried	treasure!</h1>
+			<img	id="map"	width=800 weight=800	src="http://nostarch.com/images/treasuremap.png">
+        			<p	id="distance"></p>
+    <script	src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <script>
+      var randomNumber = function(size) {
+        return Math.floor(Math.random()*size)
+      }
+
+      var width =800;
+      var height = 800;
+
+      var target = {
+        x: randomNumber(width),
+        y: randomNumber(height)
+      }
+      var getDistance = function(event, target) {
+        var diffX = event.offsetX - target.x;
+        var diffY = event.offsetY - target.y;
+        return (Math.sqrt(Math.abs((diffX * diffY)) + Math.abs((diffY * diffX))));
+      }
+
+      var getDistanceHint = function(distance, remainingClick) {
+        if(distance < 10) {
+          return "Hottest " + "remaining chance " + remainingClick ;
+        }else if(distance < 20) {
+          return " hotter " + "remaining chance " + remainingClick;
+        } else if(distance < 40) {
+          return "hot " + "remaining chance " + remainingClick;
+        } else if(distance < 80) {
+          return "cool " + "remaining chance " + remainingClick;
+        } else if(distance < 160) {
+          return "cooler " + "remaining chance "+ remainingClick;
+        } else if(distance < 180) {
+          return "coolest " + "remaining chance " + remainingClick;
+        } else if(distance < 320) {
+          return "reaaly coolest " + "remaining chance " + remainingClick;
+        } else if(distance < 720) {
+          return "really really coolest " + "remaining chance " + remainingClick;
+        } else {
+          return "click somewhre " + "remaining chance " + remainingClick;
+        }
+      }
+        var click = 0;
+        var remainingClick = 20;
+      $("#map").click(function(event) {
+        click++;
+         remainingClick--;
+        var distance = getDistance(event, target);
+        var distanceHint = getDistanceHint(distance, remainingClick);
+        $("#distance").text(distanceHint);
+        if(distance < 8) {
+          alert("found in treasure"+ click + "clicks");
+        }
+        if(click >= 20) {
+          alert("Game Over, play again refresh page");
+          return;
+        }
+
+      });
+    </script>
+  </body>
+</html>

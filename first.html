@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>hello html</title>
+  </head>
+  <body>
+    <script>
+      const mySubject = new Rx.Subject();
+      const subscriberOne = mySubject.subscribe(val => {
+  console.log('***SUBSCRIBER ONE***', val);
+});
+const subscriberTwo = mySubject.subscribe(val => {
+  console.log('***SUBSCRIBER TWO***', val);
+});
+
+    </script>
+  </body>
+</html>

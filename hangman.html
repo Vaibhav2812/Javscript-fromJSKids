@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hagman!</title>
+  </head>
+  <body>
+    <h1>Hangman created by vaibhav</h1>
+    <h1>check your english vocabulay here</h1>
+    <script>
+      var words = ["cat","monkey","table","computer","school", "college",
+      "animal", "vaibhav", "angular", "color", "poem", "chapter","teacher","love",
+       "basket", "cricket","football", "hocky","mat","donkey","funny","english",
+       "india","student","laptop","girl","mother","father","building","history",
+        "carpenter", "village","mumbai","hangman","book","notebook","exam","paper",
+        "newspaper","minister","google","letter","word","mathematics", "toilet",
+         "earthquake", "atom","science","robot","hate"];
+      var word = words[Math.floor(Math.random() * words.length)];
+
+      var answerArray = [];
+      for(var i =0; i< word.length;i++) {
+        answerArray[i] = "_"
+      }
+      var remainingLetter =word.length;
+
+      while(remainingLetter > 0 ){
+        alert("your word lenght is " + word.length + "\n"+ answerArray.join(" "));
+        var guess = prompt("Guess a letter, or click cancel to stop playing");
+        if(guess === null) {
+          break;
+        } else if(guess.length !==1) {
+          alert("please enter single charcter");
+        } else {
+          for(var j = 0; j< word.length;j++) {
+            if(word[j] === guess) {
+              answerArray[j] = guess;
+              remainingLetter--;
+            }
+          }
+        }
+      }
+      alert(answerArray.join(" "));
+      alert("good job the answer is " + word);
+    </script>
+  </body>
+</html>
